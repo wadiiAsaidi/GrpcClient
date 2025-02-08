@@ -1,0 +1,50 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.Tools" Version="2.69.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="GrpcProtos/**/*.proto" Access="Public" 
+				  ProtoCompile="True" CompileOutputs="true"
+				  GrpcServices="server"
+				  OutputDir="..\ContractsGrpc\CodeGeneration\DataContracts\"
+				  GrpcOutputDir="..\GrpcService1\Services\CodeGeneration\" />
+	</ItemGroup>	
+	
+	<ItemGroup>
+		<Protobuf Include="GrpcProtos/**/*.proto" Access="Public" 
+				  ProtoCompile="True" CompileOutputs="true"
+				  GrpcServices="client"
+				  OutputDir="..\ContractsGrpc\CodeGeneration\DataContracts\"
+				  GrpcOutputDir="..\GrpcClient\Client\CodeGeneration\" />
+	</ItemGroup>
+	
+	<!--<ItemGroup>
+		<Protobuf Include="GrpcProtos/**/*.proto" Access="Public" ProtoCompile="True"
+		CompileOutputs="true" GrpcServices="client" OutputDir="..\SimplyDesk.TenantManager.Contracts\CodeGeneration\DataContracts\" GrpcOutputDir="..\SimplyDesk.TenantManager.CodeGeneration.GrpcClient\CodeGeneration\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="GrpcProtos/**/*.proto" Access="Public" ProtoCompile="True" CompileOutputs="true" GrpcServices="server" OutputDir="..\SimplyDesk.TenantManager.Contracts\CodeGeneration\DataContracts\" GrpcOutputDir="..\SimplyDesk.TenantManager.Services\CodeGeneration\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Protobuf Include="GrpcWebApiProtos/**/*.proto" Access="Public" ProtoCompile="True" CompileOutputs="true" GrpcServices="client" OutputDir="..\SimplyDesk.TenantManager.Services.Host.WebApi\CodeGeneration\DataContracts\" GrpcOutputDir="..\SimplyDesk.TenantManager.Services.Host.WebApi\CodeGeneration\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Protobuf Include="GrpcWebApiProtos/**/*.proto" Access="Public" ProtoCompile="True" CompileOutputs="true" GrpcServices="server" OutputDir="..\SimplyDesk.TenantManager.Services.WebApi\CodeGeneration\DataContracts\" GrpcOutputDir="..\SimplyDesk.TenantManager.Services.WebApi\CodeGeneration\" />
+	</ItemGroup>-->
+
+		
+		
+
+</Project>
