@@ -1,6 +1,7 @@
-﻿using GrpcService1.Services;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using ServicesLayer.Services;
+using ServicessLayer.Webapi.Services.Ticket;
 
 namespace GrpcService1
 {
@@ -9,7 +10,11 @@ namespace GrpcService1
         public static  void MapGrpcServices(this IEndpointRouteBuilder endpoints)
         {
             endpoints.MapGrpcService<AuthManagementServices>();
-            endpoints.MapGrpcService<GreeterService>();
+        }
+
+        public static  void MapGrpcServicesWebApi(this IEndpointRouteBuilder endpoints)
+        {
+            endpoints.MapGrpcService<TicketServices>();
         }
     }
 }

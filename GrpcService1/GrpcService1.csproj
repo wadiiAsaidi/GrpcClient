@@ -1,19 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ContractsGrpc\ContractsGrpc.csproj" />
+    <ProjectReference Include="..\ServicesLayer\ServicesLayer.csproj" />
+    <ProjectReference Include="..\ServicessLayer.Webapi\ServicessLayer.Webapi.csproj" />
   </ItemGroup>
 
 </Project>
