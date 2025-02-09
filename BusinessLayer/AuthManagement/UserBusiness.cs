@@ -11,7 +11,7 @@ namespace BusinessLayer.AuthManagement
 
         public string SignIn(User request)
         {
-            return true;
+            return "";
         }
     }
 }
