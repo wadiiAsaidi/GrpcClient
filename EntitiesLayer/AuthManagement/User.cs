@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EntitiesLayer.EntityBase;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EntitiesLayer.AuthManagement
 {
-    public  class User
+    public  class User: IEntity
     {
         public Guid Id { get; set; }
         public string Username { get; set; }

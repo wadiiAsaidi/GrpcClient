@@ -1,10 +1,11 @@
-﻿using System;
+﻿using EntitiesLayer.EntityBase;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EntitiesLayer.AuthManagement
 {
-    internal class UserRole
+    public class UserRole: IEntity
     {
     }
 }

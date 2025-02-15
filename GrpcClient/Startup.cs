@@ -29,6 +29,8 @@ namespace GrpcClient
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            var ccc = Configuration.GetSection("Grpcurl").Value;
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
