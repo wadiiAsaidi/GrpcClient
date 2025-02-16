@@ -17,8 +17,44 @@ namespace BusinessLayer.AuthManagement
 
         public string SignIn(User request)
         {
+            var company = new Company
+            {
+                Id = Guid.NewGuid(),
+                Name = "Company",
+            };
 
-            Data._RepoUser.Add(request);
+            var role = new Role
+            {
+                Id = Guid.NewGuid(),
+                Name = "admin",
+                Code = 252
+            };
+
+            var user = new User
+            {
+                Id = Guid.NewGuid(),
+                FirstName= "FirstName",
+                Username= "Username",
+                LastName= "LastName",
+                Email= "Email",
+                Password="123456789",
+                IsActive=true,
+                CompanyId = company.Id,
+                Company = company
+            };
+
+            // DDD
+            var userRole = new UserRole
+            {
+                UserId= user.Id,
+                Id = Guid.NewGuid(),
+                RoleId= role.Id,
+                User= user,
+                Role= role,
+            };
+
+            //Data._RepoUser.Add(user);
+            Data._RepoUserRole.Add(userRole);
             Data.commit();
 
             return "";

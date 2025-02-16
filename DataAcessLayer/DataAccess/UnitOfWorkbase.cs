@@ -26,12 +26,18 @@ namespace DataAcessLayer.DataAccess
     {
         public int commit()
         {
-            int count = OnInitialize().SaveChangesInternal();
+            int count = CurrentDbContext.SaveChangesInternal();
 
             return count;
         }
 
+        DbContextBase CurrentDbContext => OnInitialize();
         public DbContextBase GetDbContextWriter()
+        {
+            return CurrentDbContext;
+        }
+
+        public DbContextBase GetDbContexReader()
         {
             return OnInitialize();
         }

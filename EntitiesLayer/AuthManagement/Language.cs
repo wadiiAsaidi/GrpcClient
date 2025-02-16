@@ -1,13 +1,12 @@
-﻿using EntitiesLayer.EntityBase;
-using System;
+﻿using System;
 
 
 namespace EntitiesLayer.AuthManagement
 {
-    public class Role: IEntity
+    public class Language 
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public int Code { get; set; }
+
     }
 }

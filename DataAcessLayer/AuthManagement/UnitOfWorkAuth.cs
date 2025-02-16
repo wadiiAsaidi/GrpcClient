@@ -47,8 +47,8 @@ namespace DataAcessLayer.AuthManagement
 
         public override DbContextBase OnInitialize()
         {
-            string connectstring = "";
-            return new DbContextBase(connectstring);
+            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=TestGrpcProject";
+            return new DbContextBase(connectionString);
         }
     }
 }

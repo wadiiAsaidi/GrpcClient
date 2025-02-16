@@ -5,11 +5,15 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Reflection;
 using System;
 using EntitiesLayer.EntityBase;
+using System.Reflection.Metadata;
+using DataAcessLayer.AuthManagement.Mapping.UserMapping;
+using EntitiesLayer.AuthManagement;
 
 namespace DataAcessLayer.DataAccess
 {
     public class DbContextBase : DbContext
     {
+       
         public DbContextBase(string connectionString) : base(DatabaseProvider.AlterConnectionString(connectionString))
         {
             InitializeDbContext();
@@ -31,20 +35,39 @@ namespace DataAcessLayer.DataAccess
         //{
         //    return base.Entry(entity);
         //}
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            CreateModel(modelBuilder);
+            base.OnModelCreating(modelBuilder);
+        }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<UserRole> UserRoles { get; set; }
+        public DbSet<Company> Company { get; set; }
 
-        //public void AddEntityMapping(TypeInfo typeInfo, ModelBuilder modelBuilder)
-        //{
-        //    var isNotGenericTypeAndIsSubclassEntityMapping =
-        //        !typeInfo.ContainsGenericParameters
-        //        && typeInfo.IsSubclassOf(typeof(IEntityMapping));
+        private void CreateModel(ModelBuilder modelBuilder)
+        {
+            var location = typeof(UserMapping).Assembly.Location;
 
-        //    if (isNotGenericTypeAndIsSubclassEntityMapping)
-        //    {
-        //        (Activator.CreateInstance(typeInfo)
-        //            as IEntityMapping
-        //        ).AddEntityMapping(modelBuilder);
-        //    }
-        //}
+            foreach (var typeInfo in Assembly.LoadFrom(location).DefinedTypes)
+            {
+                AddEntityMapping(typeInfo, modelBuilder);
+            }
+        }
+
+        public void AddEntityMapping(TypeInfo typeInfo, ModelBuilder modelBuilder)
+        {
+            var isNotGenericTypeAndIsSubclassEntityMapping =
+                !typeInfo.ContainsGenericParameters
+                && typeInfo.IsSubclassOf(typeof(IEntityTypeMapping));
+
+            if (isNotGenericTypeAndIsSubclassEntityMapping)
+            {
+                (Activator.CreateInstance(typeInfo)
+                    as IEntityTypeMapping
+                ).AddEntityTypeMapping(modelBuilder);
+            }
+        }
 
         public virtual int SaveChangesInternal()
         {

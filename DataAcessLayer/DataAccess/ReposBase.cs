@@ -45,7 +45,7 @@ namespace DataAcessLayer.DataAccess
             using (var data = _UnitOfWork.GetDbContextWriter())
             {
                 data.DbSet<Entity>().Add(entity);
-                //data.SaveChanges();
+                data.SaveChanges();
             }
 
         }

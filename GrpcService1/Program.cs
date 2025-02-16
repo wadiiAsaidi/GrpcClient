@@ -1,3 +1,5 @@
+using BusinessLayer.AuthManagement;
+using EntitiesLayer.AuthManagement;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using System;
@@ -12,6 +14,9 @@ namespace GrpcService1
     {
         public static void Main(string[] args)
         {
+            var user=new User();
+            var ccc = new UserBusiness().SignIn(user);
+
             CreateHostBuilder(args).Build().Run();
         }
 
