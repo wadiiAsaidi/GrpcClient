@@ -43,7 +43,7 @@ namespace BusinessLayer.AuthManagement
                 Company = company
             };
 
-            // DDD
+            // DDD architecture
             var userRole = new UserRole
             {
                 UserId= user.Id,
