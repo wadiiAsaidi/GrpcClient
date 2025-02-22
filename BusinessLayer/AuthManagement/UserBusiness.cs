@@ -22,6 +22,9 @@ namespace BusinessLayer.AuthManagement
         public void TestFeatureBranche2()
         {
 
+        } public void TestBugfixBranche()
+        {
+
         }
 
         UnitOfWorkAuth Data {  get; set; }
