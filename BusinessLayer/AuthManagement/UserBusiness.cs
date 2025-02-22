@@ -15,6 +15,12 @@ namespace BusinessLayer.AuthManagement
             Data = new UnitOfWorkAuth();
         }   
 
+
+        public void vvvvvv()
+        {
+
+        }
+
         public string SignIn(User request)
         {
             var company = new Company
