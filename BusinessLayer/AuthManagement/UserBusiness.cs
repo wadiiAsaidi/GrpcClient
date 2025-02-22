@@ -9,6 +9,13 @@ namespace BusinessLayer.AuthManagement
 {
     public class UserBusiness
     {
+
+
+        public void TestBranche()
+        {
+
+        }
+
         UnitOfWorkAuth Data {  get; set; }
         public UserBusiness()
         {
