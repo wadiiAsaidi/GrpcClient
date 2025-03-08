@@ -11,21 +11,7 @@ namespace BusinessLayer.AuthManagement
     {
 
 
-        public void TestBranche()
-        {
-
-        }
-        public void TestFeatureBranche()
-        {
-
-        }
-        public void TestFeatureBranche2()
-        {
-
-        } public void TestBugfixBranche()
-        {
-
-        }
+      
 
         UnitOfWorkAuth Data {  get; set; }
         public UserBusiness()

@@ -14,9 +14,7 @@ namespace GrpcService1
     {
         public static void Main(string[] args)
         {
-            var user=new User();
-            var ccc = new UserBusiness().SignIn(user);
-
+           
             CreateHostBuilder(args).Build().Run();
         }
 

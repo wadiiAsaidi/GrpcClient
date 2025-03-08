@@ -44,10 +44,10 @@ namespace DataAcessLayer.AuthManagement
             _RepoUserRole = new RepoUserRole(this);
             _RepoRole = new RepoRole(this);
         }
-
         public override DbContextBase OnInitialize()
         {
-            string connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=TestGrpcProject";
+            var databasename = AbstractLayer.Core.CallContextFromClient.Current.GetCallContext().DataBaseName;
+            string connectionString = $"Server=(localdb)\\MSSQLLocalDB;Database={databasename}";
             return new DbContextBase(connectionString);
         }
     }

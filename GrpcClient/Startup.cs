@@ -30,7 +30,7 @@ namespace GrpcClient
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             var ccc = Configuration.GetSection("Grpcurl").Value;
-
+            AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();

@@ -5,12 +5,14 @@ using System.Net.Http;
 using System.Threading;
 using System;
 using Grpc.Net.Client;
+using Grpc.Core.Interceptors;
+using GrpcClient.ClientsServices.GrpcInterceptorClient;
 
 namespace GrpcClient.ClientsServices
 {
     public static class Services
     {
-        private static ChannelBase ChannelFactory => GetChannel();
+        private static CallInvoker ChannelFactory => GetChannel();
         //private static ChannelBase ChannelFactory { get { return GetChannel()} };
 
         public static IAuthManagementServices AuthManagementClient
@@ -22,11 +24,15 @@ namespace GrpcClient.ClientsServices
         }
 
 
-        private static ChannelBase GetChannel()
+        private static CallInvoker GetChannel()
         {
             string serviceAddress = "https://localhost:5001";
             var handler = new HttpClientHandler();
             var httpClient = new HttpClient(handler) { Timeout = Timeout.InfiniteTimeSpan };
+
+            //    using var channel = GrpcChannel.ForAddress("https://localhost:5001");
+            //var invoker = channel.Intercept(new ClientLoggerInterceptor());
+
 
             var channel = GrpcChannel.ForAddress(serviceAddress,
                 new GrpcChannelOptions
@@ -35,7 +41,8 @@ namespace GrpcClient.ClientsServices
                 ,
                     UnsafeUseInsecureChannelCallCredentials = true
                 });
-            return channel;
+            var invoker = channel.Intercept(new ClientLoggingInterceptor());
+            return invoker;
         }
     }
 }
